@@ -28,6 +28,7 @@ class MessageService implements MessageServiecInterface
         $message->message = $request->message;
         $message->user_id = $request->user_id;
         $this->messageRepo->store($message);
+        return $message;
     }
 
     public function findById($id)

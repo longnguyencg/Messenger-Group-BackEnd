@@ -24,8 +24,16 @@ class ApiUserController extends Controller
      */
     public function index()
     {
-        $users = $this->userService->getAll();
-        return response()->json($users);
+        try{
+            $users = $this->userService->getAll();
+            $data = ['status'=>'success',
+                    'data'=>$users];
+            return response()->json($data, 200);
+        } catch (\Exception $exception){
+            $data = ['status'=>'errors',
+                'message'=>$exception];
+            return response()->json($data, 500);
+        }
     }
 
     /**
@@ -46,7 +54,16 @@ class ApiUserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = $this->userService->store($request);
+        try{
+            $user = $this->userService->store($request);
+            $data = ['status'=>'success',
+                'data'=>$user];
+            return response()->json($data, 200);
+        } catch (\Exception $exception){
+            $data = ['status'=>'errors',
+                'message'=>$exception];
+            return response()->json($data, 500);
+        }
     }
 
     /**

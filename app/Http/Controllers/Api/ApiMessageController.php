@@ -20,12 +20,29 @@ class ApiMessageController extends Controller
 
     public function index()
     {
-        $messages = $this->messageService->getAll();
-        return response()->json($messages);
+        try{
+            $messages = $this->messageService->getAll();
+            $data = ['status'=>'success',
+                'data'=>$messages];
+            return response()->json($data, 200);
+        } catch (\Exception $exception){
+            $data = ['status'=>'errors',
+                'message'=>$exception];
+            return response()->json($data, 500);
+        }
     }
 
     public function store(MessageRequest $request)
     {
-        $this->messageService->store($request);
+        try{
+            $mess = $this->messageService->store($request);
+            $data = ['status'=>'success',
+                'data'=>$mess];
+            return response()->json($data, 200);
+        } catch (\Exception $exception){
+            $data = ['status'=>'errors',
+                'message'=>$exception];
+            return response()->json($data, 500);
+        }
     }
 }
