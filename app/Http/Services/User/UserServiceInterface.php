@@ -8,5 +8,6 @@ use App\Http\Services\ServiceInterface;
 
 interface UserServiceInterface extends ServiceInterface
 {
+    public function updateStatus($user);
 
 }

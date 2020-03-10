@@ -23,3 +23,6 @@ Route::post('users', 'Api\ApiUserController@store');
 
 Route::get('messages', 'Api\ApiMessageController@index');
 Route::post('messages', 'Api\ApiMessageController@store');
+
+Route::post('login','Api\ApiLoginLogoutController@login');
+Route::get('logout/{id}','Api\ApiLoginLogoutController@logout');

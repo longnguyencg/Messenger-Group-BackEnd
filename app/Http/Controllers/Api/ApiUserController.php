@@ -46,7 +46,7 @@ class ApiUserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $this->userService->store($request);
+        $user = $this->userService->store($request);
     }
 
     /**

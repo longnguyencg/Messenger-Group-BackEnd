@@ -25,7 +25,7 @@ class UserService implements UserServiceInterface
 
     public function findById($id)
     {
-        // TODO: Implement findById() method.
+        return $this->userRepo->findById($id);
     }
 
     public function update($request, $id)
@@ -46,5 +46,13 @@ class UserService implements UserServiceInterface
         $user->status = false;
         $user->password = Hash::make($request->password);
         $this->userRepo->store($user);
+        return $user;
     }
+
+    public function updateStatus($user)
+    {
+        $user->status = !$user->status;
+        $this->userRepo->update($user);
+    }
+
 }
