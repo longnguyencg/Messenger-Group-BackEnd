@@ -74,7 +74,16 @@ class ApiUserController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $user = $this->userService->findById($id);
+            $data = ['status'=>'success',
+                'data'=>$user];
+            return response()->json($data, 200);
+        } catch (\Exception $exception){
+            $data = ['status'=>'errors',
+                'message'=>$exception];
+            return response()->json($data, 500);
+        }
     }
 
     /**
