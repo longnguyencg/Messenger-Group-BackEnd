@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGroupIdToMessegerTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddGroupIdToMessegerTable extends Migration
      */
     public function up()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            $table->unsignedBigInteger('group_id');
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('isAdmin');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddGroupIdToMessegerTable extends Migration
      */
     public function down()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('groups');
     }
 }

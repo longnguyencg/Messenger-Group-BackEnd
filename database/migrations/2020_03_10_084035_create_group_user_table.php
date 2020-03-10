@@ -13,10 +13,12 @@ class CreateGroupUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('group-user', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateGroupUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group-user');
+        Schema::dropIfExists('group_user');
     }
 }
