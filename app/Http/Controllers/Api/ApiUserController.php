@@ -26,9 +26,7 @@ class ApiUserController extends Controller
     {
         try{
             $users = $this->userService->getAll();
-            $data = ['status'=>'success',
-                    'data'=>$users];
-            return response()->json($data, 200);
+            return response()->json($users, 200);
         } catch (\Exception $exception){
             $data = ['status'=>'errors',
                 'message'=>$exception];
