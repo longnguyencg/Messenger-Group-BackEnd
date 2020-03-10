@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('users', 'Api\ApiUserController@index');
 Route::post('users', 'Api\ApiUserController@store');
+Route::get('users/{id}', 'Api\ApiUserController@show');
 
 Route::get('messages', 'Api\ApiMessageController@index');
 Route::post('messages', 'Api\ApiMessageController@store');
