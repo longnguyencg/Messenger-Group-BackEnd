@@ -6,6 +6,7 @@ namespace App\Http\Repositories\User;
 
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserRepo implements UserRepoInterface
 {
@@ -18,7 +19,9 @@ class UserRepo implements UserRepoInterface
 
     public function getAll()
     {
-        return $this->user->all();
+        return DB::table('users')
+            ->orderBy('status', 'desc')
+            ->get();
     }
 
     public function findById($id)
